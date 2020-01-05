@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Coffee Time</string>
+    <string name="action_settings">Settings</string>
+    <string name="_0">0</string>
+    <string name="coffee_is_ready_for_you">Coffee is ready for you !</string>
+    <string name="buy_1_cup_5bob_only">Buy 1 cup @ 5Bob only !</string>
+    <string name="zero">0</string>
+    <string name="cup_s">Cup(s)</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="total_amount">Total Amount :</string>
+    <string name="kshs">Kshs:</string>
+    <string name="reset">reset</string>
+    <string name="buy">Buy</string>
+    <string name="coffee_cup">coffee cup</string>
+</resources>
