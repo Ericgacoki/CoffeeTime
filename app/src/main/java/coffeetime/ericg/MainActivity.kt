@@ -1,9 +1,8 @@
 package coffeetime.ericg
 
 import android.app.AlertDialog
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
@@ -24,31 +23,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         coffeeCalculator()
+        makeButtonsInvisible()
+
+
     }
 
     private fun coffeeCalculator() {
 
-        var numberOfCups = 0 
+        var numberOfCups = 0
         var totalAmount = 0
         val amountPerCup = 5
 
-        Toast.makeText(this, " Coffee is Ready ", Toast.LENGTH_SHORT).show()
-
         btnReset.setOnClickListener {
-            if (numberOfCups >= 1){
 
-                numberOfCups = 0
-            totalAmount = numberOfCups * amountPerCup
+                    numberOfCups = 0
+                    totalAmount = numberOfCups * amountPerCup
 
-            cups.text = numberOfCups.toString()
-            amount.text = totalAmount.toString()
+                    cups.text = numberOfCups.toString()
+                    amount.text = totalAmount.toString()
 
-            Toast.makeText(this, " Reset to 0 ", Toast.LENGTH_SHORT).show()
-        }
-            else{
-                Toast.makeText(this, "Unnecessary reset !", Toast.LENGTH_SHORT).show()
-            }
-        }
+
+                    // call invisibility function
+
+                    makeButtonsInvisible()
+                }
 
         btnPlus.setOnClickListener {
             numberOfCups += 1
@@ -57,43 +55,95 @@ class MainActivity : AppCompatActivity() {
 
             cups.text = numberOfCups.toString()
             amount.text = totalAmount.toString()
+
+            /* Make other Buttons visible so that the user can Minus, Reset or Buy... */
+
+            makeButtonsVisible()
+
+            when (numberOfCups) {
+                1 -> {
+                    Toast.makeText(this, " Buttons enabled !", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
 
         btnMinus.setOnClickListener {
-            if (numberOfCups >= 1) {
-                numberOfCups -= 1
-                totalAmount = numberOfCups * amountPerCup
+            when {
+                numberOfCups > 1 -> {
+                    numberOfCups -= 1
+                    totalAmount = numberOfCups * amountPerCup
 
-                cups.text = numberOfCups.toString()
-                amount.text = totalAmount.toString()
-            }
-            else{
-                Toast.makeText(this, " No cups yet !", Toast.LENGTH_SHORT).show()
+                    cups.text = numberOfCups.toString()
+                    amount.text = totalAmount.toString()
+
+                }
+                numberOfCups == 1 -> {
+
+                    numberOfCups -= 1
+                    totalAmount = numberOfCups * amountPerCup
+
+                    cups.text = numberOfCups.toString()
+                    amount.text = totalAmount.toString()
+
+                    /*  TODO:   ! VERY IMPORTANT ! -> call Invisibility function (here).
+                    *    IF IT'S NOT DONE , THE USER CAN END UP BUYING ZERO CUPS  */
+
+                    makeButtonsInvisible()
+                }
             }
         }
 
+        btnBuy.setOnClickListener {
 
-       btnBuy.setOnClickListener {
-           if(numberOfCups !=0){
+                val buyAlert = AlertDialog.Builder(this)
 
-            val buyAlert = AlertDialog.Builder(this)
+                buyAlert.setTitle("Do you wish to  buy: $numberOfCups cup(s) \n                   for Kshs: $totalAmount ?")
+                buyAlert.setPositiveButton("YES") { _, _ ->
+                    // Proceed to Buy
+                    //Toast.makeText(this, " Action coming soon ", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, " Just a moment...", Toast.LENGTH_SHORT).show()
 
-            buyAlert.setTitle("Do you wish to  buy: $numberOfCups cup(s) \n                   for Kshs: $totalAmount ?")
-            buyAlert.setPositiveButton("YES") { _, _ ->
-                // Proceed to Buy
-                Toast.makeText(this, " Action coming soon ", Toast.LENGTH_SHORT).show()
-
-            }
-            buyAlert.setNegativeButton("NO") { _, _ ->
-                Toast.makeText(this, "cancelled", Toast.LENGTH_SHORT).show()
-            }
-            val alertDialog: AlertDialog = buyAlert.create()
-            alertDialog.setCancelable(false)
-            alertDialog.show()
+                }
+                buyAlert.setNegativeButton("NO") { _, _ ->
+                    Toast.makeText(this, "cancelled", Toast.LENGTH_SHORT).show()
+                }
+                val alertDialog: AlertDialog = buyAlert.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
         }
-           else{
-               Toast.makeText(this, "You can't buy 0 cups !", Toast.LENGTH_SHORT).show()
-           }
-       }
+    }
+
+    private fun makeButtonsInvisible() {
+
+        btnReset.visibility = View.INVISIBLE
+        btnMinus.isEnabled = false
+        btnReset.isActivated = false
+
+        btnMinus.visibility = View.INVISIBLE
+        btnMinus.isEnabled = false
+        btnReset.isActivated = false
+
+        btnBuy.visibility = View.INVISIBLE
+        btnBuy.isEnabled = false
+        btnBuy.isActivated = false
+
+        Toast.makeText(this, "3 Buttons disabled! Press '+' to enable them", Toast.LENGTH_SHORT).show()
+
+
+    }
+
+    private fun makeButtonsVisible() {
+        btnReset.visibility = View.VISIBLE
+        btnMinus.isEnabled = true
+        btnReset.isActivated = true
+
+        btnMinus.visibility = View.VISIBLE
+        btnMinus.isEnabled = true
+        btnReset.isActivated = true
+
+        btnBuy.visibility = View.VISIBLE
+        btnBuy.isEnabled = true
+        btnBuy.isActivated = true
     }
 }
