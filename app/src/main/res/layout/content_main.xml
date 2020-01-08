@@ -31,53 +31,45 @@
         android:text="@string/buy_1_cup_5bob_only"
         android:textColor="#010435"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/noOfCupsText"
+        app:layout_constraintBottom_toTopOf="@+id/coffeeCup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeText"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintTop_toBottomOf="@id/welcomeText" />
 
     <ImageView
         android:id="@+id/coffeeCup"
-        android:layout_width="203dp"
-        android:layout_height="187dp"
+        android:layout_width="194dp"
+        android:layout_height="170dp"
         android:contentDescription="@string/coffee_cup"
+        android:src="@drawable/coffeecup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237"
-        app:srcCompat="@drawable/ic_favorite" />
+        app:layout_constraintVertical_bias="0.249" />
+
 
     <TextView
         android:id="@+id/cups"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_0"
+        android:paddingStart="2dp"
+        android:paddingEnd="7dp"
+        android:background="#fff"
         android:maxLength="8"
+        android:text="@string/_0"
         android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="20sp"
+        android:textColor="#012ED3"
+        android:textStyle="bold"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/coffeeCup"
         app:layout_constraintEnd_toEndOf="@+id/coffeeCup"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/coffeeCup"
         app:layout_constraintTop_toTopOf="@+id/coffeeCup"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <TextView
-        android:id="@+id/noOfCupsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cup_s"
-        android:textColor="#030EC4"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/coffeeCup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.763" />
-
+        app:layout_constraintVertical_bias="0.209" />
 
     <Button
         android:id="@+id/btnMinus"
@@ -139,8 +131,9 @@
         android:layout_height="wrap_content"
         android:text="@string/_0"
         android:maxLength="8"
-        android:textSize="20sp"
-        android:textColor="#4C0158"
+        android:textSize="27sp"
+        android:textColor="#012ED3"
+        android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnPlus"
