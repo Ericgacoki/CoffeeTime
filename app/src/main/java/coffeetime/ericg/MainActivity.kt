@@ -1,13 +1,11 @@
 package coffeetime.ericg
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +15,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fab.setOnClickListener { view ->
+       /* fab was deleted
+
+       fab.setOnClickListener { view ->
             Snackbar.make(view, "Enjoy your Coffee", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-        }
+        }*/
 
         coffeeCalculator()
         makeButtonsInvisible()
@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity() {
                     cups.text = numberOfCups.toString()
                     amount.text = totalAmount.toString()
 
+            //Set Progress to zero
+            coffeeprogress.progress = 0
+
+            //enable + button
+            btnPlus.isEnabled = true
 
                     // call invisibility function
 
@@ -56,6 +61,10 @@ class MainActivity : AppCompatActivity() {
             cups.text = numberOfCups.toString()
             amount.text = totalAmount.toString()
 
+            //Add progress
+
+            coffeeprogress.incrementProgressBy(1)
+
             /* Make other Buttons visible so that the user can Minus, Reset or Buy... */
 
             makeButtonsVisible()
@@ -63,6 +72,11 @@ class MainActivity : AppCompatActivity() {
             when (numberOfCups) {
                 1 -> {
                     Toast.makeText(this, " Buttons enabled !", Toast.LENGTH_SHORT).show()
+                }
+                75 -> {
+                    btnPlus.isEnabled = false
+                    Toast.makeText(this, " $numberOfCups is the Max you can buy at at time!", Toast.LENGTH_SHORT).show()
+                    max.text = "Max"
                 }
             }
 
@@ -76,6 +90,13 @@ class MainActivity : AppCompatActivity() {
 
                     cups.text = numberOfCups.toString()
                     amount.text = totalAmount.toString()
+
+                    //Decrement Progress
+                    coffeeprogress.incrementProgressBy(-1)
+
+                    //Enable + button ( at 75 the btn will be disabled)
+                    btnPlus.isEnabled = true
+                    max.text = ""
 
                 }
                 numberOfCups == 1 -> {
@@ -114,6 +135,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun makeButtonsInvisible() {
 
         btnReset.visibility = View.INVISIBLE
@@ -128,11 +150,15 @@ class MainActivity : AppCompatActivity() {
         btnBuy.isEnabled = false
         btnBuy.isActivated = false
 
-        Toast.makeText(this, "3 Buttons disabled! Press '+' to enable them", Toast.LENGTH_SHORT).show()
+        coffeeprogress.progress = 0
+        max.text = ""
+
+        Toast.makeText(this, "press '+1' to enable buttons", Toast.LENGTH_SHORT).show()
 
 
     }
 
+    @SuppressLint("RestrictedApi")
     private fun makeButtonsVisible() {
         btnReset.visibility = View.VISIBLE
         btnMinus.isEnabled = true

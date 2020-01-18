@@ -71,27 +71,31 @@
         app:layout_constraintTop_toTopOf="@+id/coffeeCup"
         app:layout_constraintVertical_bias="0.209" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnMinus"
+        app:maxImageSize="30dp"
+        android:theme="@style/Theme2"
         android:layout_width="86dp"
+        android:src="@drawable/ic_minus"
         android:layout_height="59dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="60dp"
-        android:text="@string/minus"
-        android:background="@drawable/redcircle"
         android:textColor="#000"
         android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coffeeCup" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnPlus"
         android:layout_width="90dp"
         android:layout_height="61dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="44dp"
-        android:text="@string/plus"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/greencircle"
+        android:clickable="true"
+        android:focusable="true"
+        app:maxImageSize="30dp"
+        android:src="@drawable/ic_plus1"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coffeeCup" />
@@ -166,6 +170,74 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnReset"
         app:layout_constraintTop_toBottomOf="@+id/btnPlus" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="408dp"
+        android:layout_height="78dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="bottom"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="7dp"
+            app:fabCradleRoundedCornerRadius="40dp"
+            app:fabCradleVerticalOffset="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount"
+            app:layout_constraintVertical_bias="1.0"
+            app:menu="@menu/menu_main"
+            app:navigationIcon="@drawable/ic_info" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#000"
+            android:src="@drawable/ic_chat"
+            android:tint="#fff"
+            app:layout_anchor="@id/bottomAppBar"
+            app:maxImageSize="30dp" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <ProgressBar
+        android:id="@+id/coffeeprogress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="92dp"
+        android:layout_height="96dp"
+        android:max="75"
+        android:progress="75"
+        android:progressDrawable="@drawable/ring"
+        app:layout_constraintBottom_toTopOf="@+id/amountText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
+    <TextView
+        android:id="@+id/max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/at"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="@+id/coffeeprogress"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

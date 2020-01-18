@@ -13,4 +13,5 @@
     <string name="reset">reset</string>
     <string name="buy">Buy</string>
     <string name="coffee_cup">coffee cup</string>
+    <string name="at" />
 </resources>
