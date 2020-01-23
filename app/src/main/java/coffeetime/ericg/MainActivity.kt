@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                     cups.text = numberOfCups.toString()
                     amount.text = totalAmount.toString()
 
-                    /*  TODO:   ! VERY IMPORTANT ! -> call Invisibility function (here).
+                    /*  TODO: -> call Invisibility function (here).
                     *    IF IT'S NOT DONE , THE USER CAN END UP BUYING ZERO CUPS  */
 
                     makeButtonsInvisible()
