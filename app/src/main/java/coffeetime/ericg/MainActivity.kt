@@ -155,7 +155,6 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, "press '+1' to enable buttons", Toast.LENGTH_SHORT).show()
 
-
     }
 
     @SuppressLint("RestrictedApi")
